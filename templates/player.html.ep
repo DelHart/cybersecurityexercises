@@ -1,0 +1,177 @@
+<html>
+<head> <title> RARP </title>
+    <script src="/jquery-3.6.0.min.js"></script>
+    <script src="/rarp.js"> </script>
+    <script>
+       $(document).ready(init(<%= $id %>));
+
+    </script>
+</head>
+<body>
+
+<table><tr><td>
+<table border='1'><tr><td><b> Current Action </b> </td> 
+           <td><b> Time Left: </b> </td> 
+       <td rowspan='2' style="bottom:0px;padding-bottom:0px">
+         <div id="busy_bar" style="background:#98bf21;bottom:0px;position:relative;padding-bottom:0px;height:50px;width:50px;"></div> </td>
+       </tr>
+       <tr><td><div id="current_action"> </div> </td>
+           <td><div id='countdown'> </div> </td></tr></table>
+</td><td>
+
+<table><tr><td>
+
+<b> Player </b><br/>
+<table>
+<tr> <td> Time: </td> <td> <div id="clock"> </div> </td> </tr>
+<tr> <td> Personal Score: </td> <td> <div id="score"> </div> </td> </tr>
+<tr> <td> Budget: </td> <td> <div id="budget"> </div> </td> </tr>
+</table>
+</td>
+<td> <b>Player Messages </b> <br/>
+     <div id="pmsgs"> </div>
+     </td>
+<td> <b>Company Messages </b> <br/>
+     <div id="cmsgs"> </div>
+     </td>
+     </tr>
+</table>
+</td></tr></table>
+
+<table> 
+   <tr style="vertical-align:top"> 
+    <td> <b> Personal Skill Table </b>
+     <table id='skill_table'> 
+     <tr><th> Active </th> <th> Name </th> <th> Skill </th> </tr>
+     <tr> <th colspan='2'>Assets </th> </tr>
+     % for my $f (@$assets) {
+        <tr> <td> <input type='button' id='active_<%=$f%>' onclick='toggle_area("<%=$f%>")' value="enable"> </input> </td> 
+             <td> <%= $f %> </td> 
+             <td id='value_<%=$f%>' style="border-style:solid; border-width: 1px; padding:0px"> <div id='skillbox_<%=$f%>' style="background:#98bf21;height:0px;margin:0px"></div></td> </tr>
+     % }
+     <tr> <th colspan='2'>Security Functions </th> </tr>
+     % for my $f (@$fields) {
+        <tr> <td> <input type='button' id='active_<%=$f%>' onclick='toggle_area("<%=$f%>")' value="enable"> </input> </td> 
+             <td> <%= $f %> </td> 
+             <td id='value_<%=$f%>' style="border-style:solid; border-width: 1px; padding:0px"> <div id='skillbox_<%=$f%>' style="background:#98bf21;height:0px;margin:0px"></div></td> </tr>
+     % }
+     </table>
+   </td> 
+    <td> 
+    <table>
+       <tr><th colspan='11'>Threats</th></tr>
+       <tr>  <th style="height:50px"> Developing </th>
+         <td><div id="threat_2_0" style="background:#de2121;bottom:0px;position:relative;padding-bottom:0px;height:0px;width:50px;"></div> </td>
+         <td><div id="threat_2_1" style="background:#de2121;bottom:0px;position:relative;padding-bottom:0px;height:0px;width:50px;"></div> </td>
+         <td><div id="threat_2_2" style="background:#de2121;bottom:0px;position:relative;padding-bottom:0px;height:0px;width:50px;"></div> </td>
+         <td><div id="threat_2_3" style="background:#de2121;bottom:0px;position:relative;padding-bottom:0px;height:0px;width:50px;"></div> </td>
+         <td><div id="threat_2_4" style="background:#de2121;bottom:0px;position:relative;padding-bottom:0px;height:0px;width:50px;"></div> </td>
+         <td><div id="threat_2_5" style="background:#de2121;bottom:0px;position:relative;padding-bottom:0px;height:0px;width:50px;"></div> </td>
+         <td><div id="threat_2_6" style="background:#de2121;bottom:0px;position:relative;padding-bottom:0px;height:0px;width:50px;"></div> </td>
+         <td><div id="threat_2_7" style="background:#de2121;bottom:0px;position:relative;padding-bottom:0px;height:0px;width:50px;"></div> </td>
+         <td><div id="threat_2_8" style="background:#de2121;bottom:0px;position:relative;padding-bottom:0px;height:0px;width:50px;"></div> </td>
+         <td><div id="threat_2_9" style="background:#de2121;bottom:0px;position:relative;padding-bottom:0px;height:0px;width:50px;"></div> </td>
+       </tr>
+       <tr> <th style="height:50px"> Emminent </th>
+         <td><div id="threat_1_0" style="background:#de2121;bottom:0px;position:relative;padding-bottom:0px;height:0px;width:50px;"></div> </td>
+         <td><div id="threat_1_1" style="background:#de2121;bottom:0px;position:relative;padding-bottom:0px;height:0px;width:50px;"></div> </td>
+         <td><div id="threat_1_2" style="background:#de2121;bottom:0px;position:relative;padding-bottom:0px;height:0px;width:50px;"></div> </td>
+         <td><div id="threat_1_3" style="background:#de2121;bottom:0px;position:relative;padding-bottom:0px;height:0px;width:50px;"></div> </td>
+         <td><div id="threat_1_4" style="background:#de2121;bottom:0px;position:relative;padding-bottom:0px;height:0px;width:50px;"></div> </td>
+         <td><div id="threat_1_5" style="background:#de2121;bottom:0px;position:relative;padding-bottom:0px;height:0px;width:50px;"></div> </td>
+         <td><div id="threat_1_6" style="background:#de2121;bottom:0px;position:relative;padding-bottom:0px;height:0px;width:50px;"></div> </td>
+         <td><div id="threat_1_7" style="background:#de2121;bottom:0px;position:relative;padding-bottom:0px;height:0px;width:50px;"></div> </td>
+         <td><div id="threat_1_8" style="background:#de2121;bottom:0px;position:relative;padding-bottom:0px;height:0px;width:50px;"></div> </td>
+         <td><div id="threat_1_9" style="background:#de2121;bottom:0px;position:relative;padding-bottom:0px;height:0px;width:50px;"></div> </td>
+       </tr>
+       <tr> <th style="height:50px"> Active </th>
+         <td><div id="threat_0_0" style="background:#de2121;bottom:0px;position:relative;padding-bottom:0px;height:0px;width:50px;"></div> </td>
+         <td><div id="threat_0_1" style="background:#de2121;bottom:0px;position:relative;padding-bottom:0px;height:0px;width:50px;"></div> </td>
+         <td><div id="threat_0_2" style="background:#de2121;bottom:0px;position:relative;padding-bottom:0px;height:0px;width:50px;"></div> </td>
+         <td><div id="threat_0_3" style="background:#de2121;bottom:0px;position:relative;padding-bottom:0px;height:0px;width:50px;"></div> </td>
+         <td><div id="threat_0_4" style="background:#de2121;bottom:0px;position:relative;padding-bottom:0px;height:0px;width:50px;"></div> </td>
+         <td><div id="threat_0_5" style="background:#de2121;bottom:0px;position:relative;padding-bottom:0px;height:0px;width:50px;"></div> </td>
+         <td><div id="threat_0_6" style="background:#de2121;bottom:0px;position:relative;padding-bottom:0px;height:0px;width:50px;"></div> </td>
+         <td><div id="threat_0_7" style="background:#de2121;bottom:0px;position:relative;padding-bottom:0px;height:0px;width:50px;"></div> </td>
+         <td><div id="threat_0_8" style="background:#de2121;bottom:0px;position:relative;padding-bottom:0px;height:0px;width:50px;"></div> </td>
+         <td><div id="threat_0_9" style="background:#de2121;bottom:0px;position:relative;padding-bottom:0px;height:0px;width:50px;"></div> </td>
+       </tr>
+    </table>
+    <table border='1'> 
+       <tr> <th> Name </th> <th> Value </th>
+     % for my $f (@$fields) {
+        <th> <%= $f %> </th> 
+     % }
+       </tr>
+       <tr> <td style="height:30px"> Company </td> <td> <div id='company_value'> </div> </td> 
+     % for my $f (@$fields) {
+          <td> <div id='company_<%=$f%>' style="background:#98bf21;height:0px;margin:0px"> </div>  </td>
+     % }
+       </tr>
+     % for my $a (@$assets) {
+       <tr> <td> <%=$a%> </td> 
+          <td> <div id='asset_value_<%=$a%>'> </div> </td>
+     % for my $f (@$fields) {
+          <td> <div id='asset_<%=$a%>_<%=$f%>'> </div> </td>
+     % }
+       </tr>
+     % }
+    </table>
+    <table border='1'>
+     <tr> <th colspan="4" style="align:center">Action Table</th></tr>
+     <tr> 
+      <td style="width:25%"> <table>
+         <tr><th>Name</th><td id="action_0_name"></td></tr>
+         <tr><th>Time</th><td id="action_0_time"></td></tr>
+         <tr><th>Difficulty</th><td id="action_0_difficulty"></td></tr>
+         <tr><th>Cost</th><td id="action_0_cost"></td></tr>
+         <tr><td id="action_0_doit"><input type='button' value='do it'></input></td>
+             <td id="action_0_dismiss"><input type='button' value='dismiss'></input></td></tr>
+         <tr><th colspan='2'>Description</th></tr>
+         <tr><td id="action_0_description" colspan='2'></td></tr>
+           </table></td>
+      <td style="width:25%"> <table>
+         <tr><th>Name</th><td id="action_1_name"></td></tr>
+         <tr><th>Time</th><td id="action_1_time"></td></tr>
+         <tr><th>Difficulty</th><td id="action_1_difficulty"></td></tr>
+         <tr><th>Cost</th><td id="action_1_cost"></td></tr>
+         <tr><td id="action_1_doit"><input type='button' value='do it'></input></td>
+             <td id="action_1_dismiss"><input type='button' value='dismiss'></input></td></tr>
+         <tr><th colspan='2'>Description</th></tr>
+         <tr><td id="action_1_description" colspan='2'></td></tr>
+           </table></td>
+      <td style="width:25%"> <table>
+         <tr><th>Name</th><td id="action_2_name"></td></tr>
+         <tr><th>Time</th><td id="action_2_time"></td></tr>
+         <tr><th>Difficulty</th><td id="action_2_difficulty"></td></tr>
+         <tr><th>Cost</th><td id="action_2_cost"></td></tr>
+         <tr><td id="action_2_doit"><input type='button' value='do it'></input></td>
+             <td id="action_2_dismiss"><input type='button' value='dismiss'></input></td></tr>
+         <tr><th colspan='2'>Description</th></tr>
+         <tr><td id="action_2_description" colspan='2'></td></tr>
+           </table></td>
+      <td style="width:25%"> <table>
+         <tr><th>Name</th><td id="action_3_name"></td></tr>
+         <tr><th>Time</th><td id="action_3_time"></td></tr>
+         <tr><th>Difficulty</th><td id="action_3_difficulty"></td></tr>
+         <tr><th>Cost</th><td id="action_3_cost"></td></tr>
+         <tr><td id="action_3_doit"><input type='button' value='do it'></input></td>
+             <td id="action_3_dismiss"><input type='button' value='dismiss'></input></td></tr>
+         <tr><th colspan='2'>Description</th></tr>
+         <tr><td id="action_3_description" colspan='2'></td></tr>
+           </table></td>
+     </tr>
+    </table>
+    </td>
+   </tr>
+</table>
+   
+<b> Company </b> <br/>
+<table>
+<tr><td> Company Name: </td> <td id='c_name'> </td> </tr>
+</table>
+
+
+</body>
+
+</html>
